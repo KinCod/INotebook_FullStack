@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const NotesSchema = new Schema({
+    user :{
+        type: Schema.Types.ObjectId,            //ab idhar directly user store hojayega
+        ref:'user'                      //dusre model ka naam
+    },
     title :{
         type: String,
         required: true
