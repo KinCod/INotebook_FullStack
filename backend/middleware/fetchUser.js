@@ -12,8 +12,7 @@ const fetchuser = (req, res, next) => {
   try {
     const data = jwt.verify(token, "shhhhh"); //idhar se humein id miljayegi as humne token and secret key dedi
 
-    req.user = data;           //as humne req khudse change krdi so jaise hi ab, req.user krenge toh we get header wala data
-
+    req.user = data.user;           //as humne req khudse change krdi so jaise hi ab, req.user krenge toh we get header wala data
   } catch (err) {
     return res.status(401).send({ error: "Invalid Token" });
   }
