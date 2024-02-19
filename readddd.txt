@@ -1,0 +1,68 @@
+15/2/24
+So aaj i was working on creating Authentication on jo user email and password dalega and learned about JWt and Bcrypt k bhi multiple methods
+Still understanding data jo hum thunder client mai enter krte is that data jo page ki body mai hoga and udhar se hum read krke compare krenge from database by taking this data and sending it to api and then api asking db and returning some ans and then this api telling us k if exist krta or not
+
+->Vid 51
+We're making a middleware. So basically ye ek aisi cheez hai jisko hum iss point pe isliye use krre so that hum user ka data access kar paaye from the jwt. So agar alag alag jagah par access karna hoga data tab again again same code likhne se accha hai ki ek MIDDLE WARE bnalo
+->Middle ware ek function hoga jo tab call kra jayega jab user k Credentials ki need hogi
+-> Okay so middle ware 3 cheezein use krta (req,res,next) -> req to vo hi k api se kuch req kro usmai kuch res kro but next is basically ki middleware k baad directly konsa function run hoga . for that see auth.js mai 3rd post endpoint. after the FETCHUSER middleware we directly goto async wala
+-> 	1. SO in middle ware humne header se directly token request kra for particular user.
+	2. uske baad jwt se verify krvaya token using the secret key and usse humein id return huyi and ye humne directly res.user mai store kri.
+	3. now inside auth.js if res.user hum krenge then we directly get the id and then using that id we can access the data. EZEEE 
+
+16/2/24
+-> vid 52
+OKay so ab we'll be working with New Api (Notes) and for that we'll be using Notes wala model and this will be used to fetch NOTES
+1	->Sbse pehle we form a router to request data and ismai we use MIDDLEWARE that will be used to get id of user jisse uska data hum lee aaenge.
+	->Yaad hai na middleware directly talks with an Router api in Auth.js and vo api directly has present user id in its HEADER so moj.
+
+2	-> Okay So now hum apne Notes wale Schema mai user wala section add krenge which will show ki ye notes ye user se linked hai
+	->And ye joh USER wala section hoga iska data hum directly User wale model se laaenge (kuch foreign key bola samajh nhi aaya) - Thoda research kar lena
+	->Ab to access notes for a user humein Notes bhi toh add krne pdenge so we make an Endpoint jo for a particular user Notes add krega
+	->Okay toh maine Endpoint create kra and ye endpoint k header mai ek token hoga which will be accessed using the MiddleWare and phir uske baad iss id,body.title,body.desc ka use krke mongo mai in Notes Db ye data store krenge and phir again api to respond krenge same data EZEEEE.
+	-> bas phir ab sab chalra hai bhai..
+	#### FLOWWWW ####             (joh abhi tak mujhe lag rha)
+		1-> Phele (api pe) Screen pe user add krra apna data ie description,tag,title etc 
+		2-> Phir ye through api db mai store hoga (notes.create)
+		3-> Phir Db se respond aaega promise that has the data and vo phir hum res krenge through api and phir vo screen mai show hoga
+
+->vid 53
+Here we learned to Update the Note
+	-> Sbse pehle we made a new end point for update and ismai directly in link humein note ki ID aati hai (Use Params)
+	->Phir uske baad iss id se note find kro and uske baad check kro k aisa koi note bhi hai jiski id ye hai
+	-> milgya then check if jo update karna chahta that is an authorized user
+		->iske liye notes jo mile hai usmai we added userid wala part and also we gave Fetchuser(middleware) to this router.
+		-> So user id from notes and fetchuser se user id ( produced from jwt) and then compare (agar sahi then we can update
+	-> Okay so now humne bas update kra in DB using findByIdAndUpdate wala method which also returns a promise and boom hogya update....
+
+NEVER THINK K SAB SAMAJH AAEGA EVERRR, JUST SEE THE FLOW UNDERSTAND IT AND GROW SLOWLY EZEEEEEEEEEEEEEEEEEE
+
+19/02/24
+->vid 54
+Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is that I even used **AI** to help me understand various coding partssss WOOOOWWW
+	-> Okay so firstly i obv added a router that will have the endpoint connection.
+	-> Now within the link we even passed a PARAM(parameter) that is basically the id of note to be deleted
+	-> Now using the id we find note in DB and then using USERID in db we check if the valid user is trying to delete the note
+	-> Bas phir we use a method provided by MONGODB itself and bas phir Delete krte node ko usinng its id
+
+*OKAY FINALLY THE BACKEND IS KINDOF OVER AND NOW WE MOVE TO THE FRONTEND PART AND WILL BE WORKING AND SEEING KI KAISE YE ENDPOINTS BACKEND EVERYTHING MERGES WITH FRONTEND*
+
+->VID 55
+ //Backend and frontend sabmai apne packages.json hote hai 
+ -->Installing React-router-dom and something known as concurrently. Dekhte kya hota hai
+
+	CONCURRENTLY 
+	-> Use krre nodemon aur react app sath sath chalane k liye. Haan alag alag powershells se bhi kaam ho jayega but why not.
+	->Setup 
+		1.Okay so we know ki backend is a folder jo main folder k andar hai mtlb jidhar react app uske andar
+		2. So bas i package.json of outer react folder add this in scripts : "concurrently \"npm run start\" \"nodemon ./backend/index.js\" " EZEEEE***** 
+		3. Remember to take double quotes as text inside JSON DOUBLE QUOTES we use \ - backslash before it. 
+
+ ->Okay so bas code cleaning vgyara kri and dependencies install kri --> tailwind etc.
+
+->VID 56
+	->Kuch ni we took tailwind navbar
+	->Uske baad again we saw ROUTER k andar alag alag ROUTES jiski apni apni ROUTE hoti hai and usmai jo path hai usse ek Linked element hota hai
+	->And uske baad i even did one thing.
+		-So aisa tha ki nav is fixed to its parent and uske peeche element of other component hide kar re thee so ab
+		-sab  components mai ek top margin bnana hi hoga of some pixelll
