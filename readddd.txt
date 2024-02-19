@@ -66,3 +66,22 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 	->And uske baad i even did one thing.
 		-So aisa tha ki nav is fixed to its parent and uske peeche element of other component hide kar re thee so ab
 		-sab  components mai ek top margin bnana hi hoga of some pixelll
+
+->Vid 57
+	->So basically we're dealing with a problem which is : ki bhai jaise ek component mai kuch bhejna hai using props toh uske parent grand parent k thorough
+		- hi aa skta hai vo prop to that particular component and ye badi apps k time zyada hi complex hojata hai 
+	->Thats why we use CONTEXT API
+	->Ye bas REDUX jaisa hi hai ki ek GLOBAL STORE hai jo saari states handle krra and jisko apni state store update retrieve krni krte rhe easy
+	->And aur kisko same state use krni huyi vo bhi kar skte
+
+->Vid 58
+	->ContextAPI implement kra 
+	->	1. context ka birth kra in notecontext and vohi use hoga as provider and jab component mai access krna hoga tab bhi vohi use hoga
+		2. okay phir humne State wala part bnaya jidhar hum states bnaenge and usko hum saare components pe share kar skte
+		3. uske liye sbse pehle apko app.js(base js) mai haar attribute k top pe NoteState wala tag pelna hoga tab hi populate hoga context
+		4. phir uss component k andar use context kro and access karlo joh bhi state access krni
+        		// yaad rakhna ye jo provider k baad value={} likha hai na iske andar jo bhi hoga vo saare children acces kar skte
+        		//jaise abhi name and update method hai toh ye aaram se sab access kar skte
+
+	CRUX ->Notestate tag k under aane wale saare baccho ko ye value(Provider.v) free mai baanti jayegi (mtlb vo context.js jismai aap saare states etc implement krre)
+	      -And bas Maze kro
