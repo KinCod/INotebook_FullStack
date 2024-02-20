@@ -4,13 +4,35 @@ import NoteContext from "./noteContext"; //contezxt vali file mai bas context ko
 //udhar bhi states ko populate kar skte thee but clean rkhna code
 
 const NoteState = (props) => {
-  const notesInitial = hardNotes;  //these hard notes hum directly isliye use krre so that frontEnd ka kaam kar lein and
-                            //uske baad phir hum backend se merge krenge isko
+  const notesInitial = hardNotes; //these hard notes hum directly isliye use krre so that frontEnd ka kaam kar lein and
+  //uske baad phir hum backend se merge krenge isko
 
-    const [notes,setNotes] = ([notesInitial]);   //this is used to access and update notes
+  const [notes, setNotes] = useState(notesInitial); //this is used to access and update notes
+
+  //adding a node Func
+  const addNote = (title, description, tag) => {
+    //todo link to api
+    console.log("adding a new node");
+    let note = {
+      _id: "65cf494c78",
+      user: "65cde1a26c835a04a155bda8",
+      title: title ,
+      description: description ,
+      tag: tag ,
+      date: "2024-02-16T11:38:52.905Z",
+      __v: 0,
+    };
+    
+    setNotes(notes.concat(note));        //notes wale object mai ye new note jo bna hai usko push karna hai and phir as a whole isko set karlo as new node array of objects
+  };
+
+  //deleting
+
+  //updating
+
   return (
-    <NoteContext.Provider value={{notes,setNotes}}>
-        {props.children}
+    <NoteContext.Provider value={{ notes, addNote }}>
+      {props.children}
     </NoteContext.Provider>
   );
 };
