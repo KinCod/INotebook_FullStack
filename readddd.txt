@@ -85,3 +85,24 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 
 	CRUX ->Notestate tag k under aane wale saare baccho ko ye value(Provider.v) free mai baanti jayegi (mtlb vo context.js jismai aap saare states etc implement krre)
 	      -And bas Maze kro
+
+20/02/24
+
+->VID 59
+	->SO basically we saw ki REact ROuter dwara provided useLocation Hook kaise kaam karta and kaise UseEFFEct kaam karta and kab kab vo work karta
+	->useLocation basically uss component ki path provide karta as an object jo iss time pe active hai 
+	->Use effect run hota for various fucntionalities eg. agar uske end mai sq brackets not given then vo baar baar render hoga
+		- if bracket hai tab ek baar on refersh
+		- if braket mai kuch hai eg. some variable or state tab vo tab hi render hoga jab ismai changes aaenge
+->Vid 60
+	->Kuch ni bas notes ko hardCode json mai paste kra so that we can work with the frontEnd and phir uske baad hum backend se connect honge
+	->ab iss json ko context k through sabmein pass kra and also ek state isko update,retrieve and delete krne k liye bhi bnayi isse hi sab hoga
+
+->Vid 61
+	->OkAY so home mai we want to show user k notes so uske liye ek Component bnaya and iss componenet k andar multiple notes show honge
+	->Now ye joh multiple notes hai vo show honge by using another component which will be called in Notes jiska naam hpga Noteitem
+	->NoteItem - it is a single note ko card form mai show krne wala component
+	->Bas so noteItem mai maine as a prop ek input lia note and display kra. (notes map krra values into NotesItem as a prop)
+	->Flex wrap use krke show krdia sab kuch
+	->Ezeee
+		==> NEXT VIDEO MAI WE'LL BE ADDING UPDATE DELETE BUTTONS INTO EACH AND EVERY ITEM
