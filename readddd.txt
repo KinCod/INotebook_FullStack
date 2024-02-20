@@ -106,3 +106,23 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 	->Flex wrap use krke show krdia sab kuch
 	->Ezeee
 		==> NEXT VIDEO MAI WE'LL BE ADDING UPDATE DELETE BUTTONS INTO EACH AND EVERY ITEM
+
+->Vid 62
+	->Icons put kre in each NoteItem and ab jaise hi delete ya update hoga then we'll show an alert!! (JOH HUM EK COMPONENT K FORM MAI BNAENGE)
+	
+->Vid 63
+	->Yaad rakhna sab context se ho rha haiiii!!!
+	->SO what we did is context mai ek function likha that will ADD DELETE AND UPDATE a note
+
+   *==>ABHI HUM ADD KA USE KRENGE SO YES vo func likhenge abhi (Plus we also did some cleaning harr ek cheez ko apna component dia)
+    ** SO WE"RE inside Add Note
+	1. Obv sbse pehle context ki access do iss component ko as humein usmai ADDNOTE func chlana hai jo context mai pda hai in global store
+
+	2. Add note k andar 2 methods bnaye and e.target.value set kri and phir we stored that input into another object named : note(state in Addnote.js)
+	3. Phir submit par ek method hai usse we gave the objects->title,desc,tag to the addNote as arguments (addNotevohi so context se access kra)
+	4. Phir inside that func in noteState(context) humne iss input se new object bnaya and uss objeect to purane notes k sth concat kra and phir SetNote chlaya(state)
+		->Concat various ways se ho skta--> [...arrOfObj,newObj]      //aise new obj add hojata in arrOfObjs
+		-> arrofObjs.concat(newObj)  aisa array k sath concat hoega and ye new array return krega . Iss returned array ko hum new dataArray set kar sakte
+		->Jaise NoteState.js mai kra hai SetNode(concat)   ezeee. 
+	**DEKH READ KRTE HUYE IT CAN BE A BIT CONFUSING BUT YOU KNOWW KYAKYA HORA AND WHAT IS THE FLOW
+	**ALWAYS REMEMBER GO WITH THE FLOW AND WITH TIME YOU'LL JUST GROWWWWWW!!!!!

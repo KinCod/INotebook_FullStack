@@ -9,7 +9,7 @@ const NavBar = () => {
   let location = useLocation();         //return an object and ismai path name element hoga which gives path so using that 
                                           //we will set active statee
   useEffect(()=>{
-    console.log(location.pathname)        //using this in the navbar component places
+    //console.log(location.pathname)        //using this in the navbar component places
   },[location])
 
   return (
