@@ -17,6 +17,6 @@ app.use('/api/notes' , require('./routes/notes'));   //idhar /api/notes se hum i
 app.use('/api/auth' ,require('./routes/auth'))  //inko endpoint bolte (eg. ye hai ep for ./routes/auth.js)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}/`);
+  console.log(`iNotebook Backend listening on port ** http://localhost:${port}/ **`);
 });
  
