@@ -11,7 +11,7 @@ const About = () => {
   //   a.update();
   // }, [])
 
-  return <div className=""></div>;
+  return <div className="">ADFSDFSDFSfsdsfsdf</div>;
 };
 
 export default About;

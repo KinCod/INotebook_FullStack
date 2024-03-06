@@ -14,7 +14,7 @@ function App() {
       <NoteState>
         <Router>
           <NavBar />
-          <Alert message ="Deleted the Note!"/>
+          {/* <Alert message ="Deleted the Note!"/> */}
           <Routes>
             <Route key={"home"} exact path="/" element={<Home />} />
             

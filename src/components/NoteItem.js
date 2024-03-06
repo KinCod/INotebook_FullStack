@@ -1,8 +1,23 @@
 import React from "react";
 import Alert from "./Alert";
+import NoteContext from "../context/notes/noteContext";
+import { useContext } from "react";
 
 function NoteItem(props) {
   const { notes } = props;
+  const context = useContext(NoteContext);
+  const {deleteNote ,alert} = context;
+
+  const del = () => {
+    deleteNote(notes._id);
+    alert(notes._id);     //ab setting alert -> context mai func hoga jo alert ko activate krega
+  }
+
+  //props k through particular note ki details iss page par aari when map fucntion runs in the NOTES.js
+  //Now jab iss component ka delete icon click hoga method run hoga jo deleteNote function ko id of Particular note dedega
+  //and boom phir vo Function uss id wale note ko delete kardega from the db
+
+    
   
   return (
     <>
@@ -17,7 +32,9 @@ function NoteItem(props) {
         </div>
         <div className="p-6 pt-0 flex gap-5 items-center justify-between">
             <span className="flex gap-4 items-center [&>i]:cursor-pointer">
-            <i className="fa-solid fa-trash-can"/>
+
+            <i className="fa-solid fa-trash-can transition-all duration-1000" onClick={del}/>       
+                                                                         {/* This is the icon jismai onclick lgega*/}
             <i className="fa-regular fa-pen-to-square"/>
             </span>
             

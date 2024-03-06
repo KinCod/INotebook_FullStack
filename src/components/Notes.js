@@ -13,7 +13,7 @@ const Notes = () => {
       <Addnote />
 
       <h1 className="mt-5 text-6xl">Your NOtes</h1>
-      <div className="flex flex-wrap gap-5 items-center justify-center w-full h-auto px-4 py-8 mt-20">
+      <div className="flex flex-wrap gap-5 items-center justify-center w-screen h-auto px-4 py-8 mt-20">
         {notes.map((note) => {
           return <NoteItem key={note._id} notes={note} />;
         })}

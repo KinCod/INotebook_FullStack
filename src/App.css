@@ -1,5 +1,9 @@
 .App {
-  text-align: Left;
+  text-align: left;
+  width: 100%;
+}
+
+*{
   box-sizing: border-box;
 }
 

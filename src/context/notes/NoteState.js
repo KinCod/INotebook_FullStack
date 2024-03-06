@@ -27,11 +27,38 @@ const NoteState = (props) => {
   };
 
   //deleting
+    const deleteNote = (id) =>{            //isko note ki id aaega
+
+      //new Notes wala object bna lia jismai vo note exist ni krega jiski id aayi
+      const newNotes = notes.filter((note)=>{
+        return note._id != id;
+      })
+
+      //phir bas isko setNotes krdo and ultimately final notes mai ye exist ni krega
+      setNotes(newNotes);
+
+    }
+
+  //alert
+      //ye alert will be called when note delete hoga 
+      //and vis will be given to home.js and obv vis== true hua tab alert show hojaega
+      //we can even set note Title in this alert but abhi zroori ni so we'll see
+      const [vis,setVis] = useState({});
+      const alert = (id) =>{
+        const send = notes.filter((note)=>{
+            return note._id == id;
+        })
+        setVis({vis:true,alert:send[0].title});
+
+        setTimeout(() => {
+          setVis({vis:false});
+        }, 5000);
+      }
 
   //updating
 
   return (
-    <NoteContext.Provider value={{ notes, addNote }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote,vis,alert }}>
       {props.children}
     </NoteContext.Provider>
   );
