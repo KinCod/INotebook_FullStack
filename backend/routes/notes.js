@@ -46,7 +46,7 @@ router.post(
         tag: tag,
       });
 
-      res.send({ note });
+      res.json(note);
     } catch (err) {
       return res.status(400).json({ msg: err });
     }
