@@ -126,3 +126,37 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 		->Jaise NoteState.js mai kra hai SetNode(concat)   ezeee. 
 	**DEKH READ KRTE HUYE IT CAN BE A BIT CONFUSING BUT YOU KNOWW KYAKYA HORA AND WHAT IS THE FLOW
 	**ALWAYS REMEMBER GO WITH THE FLOW AND WITH TIME YOU'LL JUST GROWWWWWW!!!!!
+
+->Vid 64 (06-03-2024)
+	->Now we'll be adding the delete fucntionality into the projectt
+	-> So we know ki  Notes mai maine ek delete vala icon daala hai
+	->Bas usmai jaise hi click hoga vaise hi delete krdo ( So obv ONCLICK Listener use hoga)
+
+	->These are the steps
+		1.Context mai ek del fucntion hai jo basically id lera hai particular note ki and id dekhkar note ko filter krra
+		2. So onclick function add kra into the Trash Icon and phir uske baad del ko id provide kri particular note and done
+
+->Vid 65 (06-03-2024)
+	-> Now the main thing comes. We'll be using FetchApi to access data from the database that will be needed.
+	->** So remember it is just a method to actually integrate FRONTEND with the BACKEND'
+		->inside backend humne sbse pehle routes bnaye for particular task : 
+			1. Auth == (a) user ko add kro into db and provide JWT Token 
+				    (b) jab user login krra hoga then uske email ko search kro in (auth se connected db) and if password and email matches then good
+			
+			2. notes == (a) usmai hum user ka jo token hai (jo tab provide hoga jab bhi vo login krega) usko use krte to check if he is doing CRUD on iska token
+					->and obv token is directly having the id of user and uss id se hum compare krte the note._id(user wali) and jwt wwali id
+		
+		-> So ab jab humne api's bnali toh ab hum frontend pe uss api ko kuch *headerfiles,body,method* provide krenge and phir
+		 	->uske baad vo api uss data se db mai kuch cheezein kregi and phir hume respond kregi kuch (code mai likha hai backend k)
+		
+		-> Okay toh ab ek method ko explain krunga mai and vo hai (fetching all notes for particular jwt token(particular id))
+			->1. ek function bnaya jo uss component mai call hoga which is used to map notes ( ie notes.js)
+			->2. iss component mai useEffect bnaenge jo tab run hoga jab page refresh hoga
+			->3. Okay and phir iss funcrion mai fetch krenge data by providing it the jwt and in backend
+				-> jwt se id nikalenge and id se db mai data find krenge and jo related hoga vo api se front end ki ek state mai put hojaega
+			->4. iss state ka data will be send to the component which is used to print all the data into the page and boom kaam done
+		
+		(bilkul aise hi saare Create, Update and Delete method use hora hai)
+
+** yaad rakhna webd is google + flow + experience + projects + kuch bhi. So Ratna ni bas projects and basic pta hona chahiye****
+	
