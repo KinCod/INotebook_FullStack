@@ -1,13 +1,18 @@
 import React from "react";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import NoteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import Addnote from "./Addnote";
 
 const Notes = () => {
   const context = useContext(NoteContext);
-  const {notes} = context; //DESTRUCTURING se maine directly context se notes and setNotes ko access kar lia and ab directly use kar skta
+  const {notes,getAllNotes} = context; //DESTRUCTURING se maine directly context se notes and setNotes ko access kar lia and ab directly use kar skta
+  
+  useEffect(()=>{
+    getAllNotes();        //wil run onnly on opening/refreshing of webPage
+  },[])
+
   return (
     <>
       <Addnote />
