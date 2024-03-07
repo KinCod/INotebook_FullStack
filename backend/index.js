@@ -6,6 +6,9 @@ const express = require("express");
 const app = express();
 const port = 5000;
 
+var cors = require('cors')
+app.use(cors())
+
 app.use(express.json())       //this acts as middleware bw the api and our application
 
 app.get("/", (req, res) => {
