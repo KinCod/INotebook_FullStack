@@ -6,7 +6,7 @@ import { useContext } from "react";
 function NoteItem(props) {
   const { notes } = props;
   const context = useContext(NoteContext);
-  const {deleteNote ,alert} = context;
+  const {deleteNote ,alert ,editNote} = context;
 
   const del = () => {
     deleteNote(notes._id);
@@ -35,7 +35,7 @@ function NoteItem(props) {
 
             <i className="fa-solid fa-trash-can transition-all duration-1000" onClick={del}/>       
                                                                          {/* This is the icon jismai onclick lgega*/}
-            <i className="fa-regular fa-pen-to-square"/>
+            <i className="fa-regular fa-pen-to-square" />
             </span>
             
           <button
