@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import NoteContext from "../context/notes/noteContext";
+// import React, { useContext, useEffect } from "react";
+// import NoteContext from "../context/notes/noteContext";
 
 //toh basically udhar se jis jis tag ko context provide krna uss tag ko wrap kra state mai
 //and ab import kra tag k andar context ko

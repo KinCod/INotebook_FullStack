@@ -9,7 +9,7 @@ const Home = () => {
   const { vis } = context;
   return (
     <>
-      <div className="container text-center ">
+      <div className="container text-center max-w-full">
         {vis.vis && <Alert message={vis.alert} />}{" "}
         {/* agar vis.vis is true tab alert show kro */}
         <Notes />

@@ -159,4 +159,8 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 		(bilkul aise hi saare Create, Update and Delete method use hora hai)
 
 ** yaad rakhna webd is google + flow + experience + projects + kuch bhi. So Ratna ni bas projects and basic pta hona chahiye****
+
+->Vid 66 (06-03-2024)
+	->Creating a MODAL that will be used to update a NOTE
+	
 	

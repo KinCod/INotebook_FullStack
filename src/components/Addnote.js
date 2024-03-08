@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useContext } from "react";
 import NoteContext from "../context/notes/noteContext";
 
@@ -24,8 +24,8 @@ const Addnote = () => {
   }
 
   return (
-    <div className="w-screen">
-      <h1 className="text-6xl">Add a Note</h1>
+    <div className="w-full">
+      <h1 className="text-6xl font-thin">Add a Note</h1>
 
       <form className="max-w-md mx-auto my-5">
         <div className="text-left mb-5">
@@ -41,7 +41,7 @@ const Addnote = () => {
             type="text"
             id="title"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Aise daal randi k bacche : name@flowbite.com"
+            placeholder="Add 'Title' "
             required
           />
         </div>
@@ -57,7 +57,7 @@ const Addnote = () => {
             type="text"
             name="description"
             id="description"
-            placeholder="accha itna bhi ni aata ab ANPADH"
+            placeholder="Description"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
