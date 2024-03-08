@@ -1,5 +1,4 @@
 import { useState } from "react";
-import hardNotes from "../../hardNotes.json";
 import NoteContext from "./noteContext"; //contezxt vali file mai bas context ko janam dia
 //udhar bhi states ko populate kar skte thee but clean rkhna code
 
@@ -27,7 +26,6 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();  //response aane mai obv time lgega as we're dealing with async DB
-    console.log(json);
 
     //ismai saare notes set hojaenge and will be provisded to notes.js and ultimately show hoenge in screen
     setNotes(json);
@@ -48,8 +46,9 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }), // body data type (and api ki body ko provide kya krana that it may request)
     });
+    const newNote = await response.json();
 
-    console.log(await response.json());
+    setNotes(notes.concat(newNote));
   };
 
   //⁡⁢⁢⁢​‌‌‍⁡⁢⁣⁣𝕕𝕖𝕝𝕖𝕥𝕚𝕟𝕘​•⁡ 
@@ -70,11 +69,13 @@ const NoteState = (props) => {
       }
     });
 
+    console.log(await response.json());
+
     //new Notes wala object bna lia jismai vo note exist ni krega jiski id aayi
     const newNotes = notes.filter((note) => {
-      return note._id != id;
+      return id !== note._id;
     });
-
+    
     //phir bas isko setNotes krdo and ultimately final notes mai ye exist ni krega
     setNotes(newNotes);
   };
@@ -87,7 +88,7 @@ const NoteState = (props) => {
   const [vis, setVis] = useState({});
   const alert = (id) => {
     const send = notes.filter((note) => {
-      return note._id == id;
+      return note._id === id;
     });
     setVis({ vis: true, alert: send[0].title });
 
@@ -113,17 +114,21 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }), // body data type (and api ki body ko provide kya krana that it may request)
     });
 
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    console.log(await response.json())
 
-      if (element._id == id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+    //for the changes to ⁡⁢⁣⁣𝗿𝗲𝗳𝗹𝗲𝗰𝘁 𝗶𝗻 𝗳𝗿𝗼𝗻𝘁𝗘𝗻𝗱⁡
+    const UpNote = JSON.parse(JSON.stringify(notes))
+
+    for (let index = 0; index < UpNote.length; index++) {
+
+      if ( UpNote[index]._id === id) {
+        UpNote[index].title = title;
+        UpNote[index].description = description;
+        UpNote[index].tag = tag;
       }
     }
 
-    setNotes(notes);     //because directly change hogya hoga
+    setNotes(UpNote);     //because directly change hogya hoga
   };
 
   return (
