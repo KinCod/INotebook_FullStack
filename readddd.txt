@@ -162,5 +162,31 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 
 ->Vid 66 (06-03-2024)
 	->Creating a MODAL that will be used to update a NOTE
+
+**Bhot kuch likha tha but save karna bhool gya**
+
+	1. So firstly we're using a USEREF hook jiski madat se we're ab to switch on the click option in the button jo MODAL ko kholta
+		->So useRef is used by adding a *ref* method into the tag (eg. button wale mai dala) and now useref use krke and then ref.current krke
+		  -we get the same output jo e.target krke milti thi ,ie, the tag value puri
+		->using this hum button.current.click() krte so that uski default functionality on click update hojaye (ie modal show hojaye)
+	2. Uske baad we made and Update method jo iss useref ko call krta
+		->this update is called when inside the noteItem.js component user EDIT wale icon pe click krta hai
+		->so we provide this method with the note jiske icon pe click kra
+		-> isse we can save the data of clicked note into a state and add the as a value to the modal Inputs.
+
+	**See the code in Note.js component sab samajh aa jayega dheere dheere**
+
+	3. uske baad inside modal we have button jispe click krke ek method runs jo basically editNote method run karta (context wala) and ye inside db
+		-Updation krdeta for particular note with particular id
+	
+	###BASSSS###
+
+->Vid 67 (08-03-2024)
+	-> We just added some line of code into the NoteState.js Context so that just CRUD operations run ho tab frontEnd pe bhi directly change reflect ho
+		(See the code to know more) 
+->Vid 68 (08-03-2024)
+	-> JUST made some basic changes
+
+->Vid 69 (08-03-2024)
 	
 	
