@@ -56,7 +56,7 @@ router.post(
 //Route to update a note
 //so Obv jis node ko update krre uski id deni pdegi
 //we use put for this
-router.get("/update/:id", fetchuser, async (req, res) => {
+router.post("/update/:id", fetchuser, async (req, res) => {
   //ye id baad mai provide hogi of particular note
   const { title, description, tag } = req.body;
 
@@ -110,7 +110,7 @@ router.delete("/deleteNotes/:id", fetchuser, async (req, res) => {
     //ismai bas id use hoti and usse delete krte hai file ko
     let del = await Notes.findByIdAndDelete(req.params.id);
 
-    res.send("Deleted the note with Title : " + del.title);
+    res.send({del});
   } catch (err) {
     console.log({ err });
     return res.status(401).send("Internal Server Error!!! Sorry");
