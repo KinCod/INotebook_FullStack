@@ -188,5 +188,10 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 	-> JUST made some basic changes
 
 ->Vid 69 (08-03-2024)
+	->In this video we'll be adding login functionality
+	1. Okay toh sbse pehle we made 2 button in Navbar for Login and Signup
+	2. Dono ko as a Link bnaya and onclick will be redirected to connected components ,ie, Login.js and signup.js
+	3. Login mai ek form dala and uss form mai email and pass enter hoga and LOGIN api se connect hoga which will check ki vo id is in db or not??
+		->ALways remember ki jo OnSubmit hota vo hmesha from pe lgta and not on button etc.
 	
 	

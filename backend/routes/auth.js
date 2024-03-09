@@ -103,37 +103,41 @@ router.post(
     body("email", "Email Does not Exist").isEmail(),
   ], //name not needed as obv user login hi krra (sign up nhi)
   async (req, res) => {
+    let success = false;
     const result = validationResult(req);
-
-    if (!result.isEmpty()) return res.json({ errors: result.array() });
+    if (!result.isEmpty()) return res.json({success:false, error: result.array() });
 
     const { email, password } = req.body; //data request kra from api (imagined ki joh data page pe user ne input kra to login vohi req kra backend ne from the page)
 
     try {
-      
-      let user = await User.findOne({email : email}); //ye db mai pass find krke puri row return krdega
-
+      let user = await User.findOne({ email: email }); //ye db mai pass find krke puri row return krdega
       if (!user)
         return res
           .status(400)
-          .json({ error: "Please enter Correct Credentials" }); //ye toh if galat input daala
+          .json({success:false, error: "Please enter Correct Credentials" }); //ye toh if galat input daala
 
       //if user exist krta tab we check ki password sahi ya nhi
       //so ye bhi pehle hash hoga salt dlega phir db mai cmpare hoga and then btaega if correct or not
 
-      const passCompare = await bcrypt.compare(password, user.password); //comparing jo entered pass tha and jo DB mai password hai
-      
-      if (!passCompare) return res.status(400).json({ error: "Please enter Correct Credentials" });
-      
+      const passCompare = bcrypt.compare(password, user.password);
+      //comparing jo entered pass tha and jo DB mai password hai
+
+      if (!passCompare)
+        return res
+          .status(400)
+          .json({success:false, error: "Please enter Correct Credentials" });
+
       //ifpass bhi sahi hogya tab bas token phirse bhej denge
       const data = {
-        user: {id: user.id,}
+        user: { id: user._id },
       };
 
       const authtoken = jwt.sign(data, "shhhhh");
-      return res.send({ user });
+      return res.send({success:true,authtoken:authtoken});
     } catch {
-      return res.status(400).json({ error: "Some Internal Error Occured" }); //works on time like when database mai data ho hi naa etc etc
+      return res
+        .status(400)
+        .json({success:false, error: `Some Internal Error Occured!!!! ${line}` }); //works on time like when database mai data ho hi naa etc etc
     }
   }
 );
@@ -142,19 +146,15 @@ router.post(
 //so basically using authtoken hum user id nikal lenge and then uske baad uss id se user ka data find kar lenge except pass and then
 // show kardenge user ko
 
-router.post("/getuser", fetchUser ,async (req,res)=>{
+router.post("/getuser", fetchUser, async (req, res) => {
+  try {
+    userId = req.user.id;
+    const user = await User.findOne(userId).select("-password"); //password k alawa sab select karna
 
-    try{
-      userId = req.user.id;
-      const user = await User.findOne(userId).select("-password");  //password k alawa sab select karna
-
-      res.send(user);
-    }
-    catch(err){
-      return res.json({err});
-    }
-    
+    res.send(user);
+  } catch (err) {
+    return res.json({ err });
   }
-)
+});
 
 module.exports = router;
