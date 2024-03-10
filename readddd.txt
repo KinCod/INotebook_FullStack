@@ -193,5 +193,9 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 	2. Dono ko as a Link bnaya and onclick will be redirected to connected components ,ie, Login.js and signup.js
 	3. Login mai ek form dala and uss form mai email and pass enter hoga and LOGIN api se connect hoga which will check ki vo id is in db or not??
 		->ALways remember ki jo OnSubmit hota vo hmesha from pe lgta and not on button etc.
-	
+	4******* Bhaiiiiiiii bhot time se lga hua ek error aaye ja rha tha in bcrypt compare jo theek hi nhi ho rha hai
+		->So basically jo password from form jaa rha tha that was a array type and vohi mai directly compare krra tha and error hi ERROR
+		->phir during console.log i saw input formats and bhaii tab pta lga and ultimately i got to know ki :
+			---***> Always see ki kya input jaara when kuch aisi cheez mai error aaye jahan input se related kuch kuch ho
+
 	
