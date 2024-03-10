@@ -187,7 +187,7 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 ->Vid 68 (08-03-2024)
 	-> JUST made some basic changes
 
-->Vid 69 (08-03-2024)
+->Vid 69 ('08/09'-03-2024)
 	->In this video we'll be adding login functionality
 	1. Okay toh sbse pehle we made 2 button in Navbar for Login and Signup
 	2. Dono ko as a Link bnaya and onclick will be redirected to connected components ,ie, Login.js and signup.js
@@ -198,4 +198,17 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 		->phir during console.log i saw input formats and bhaii tab pta lga and ultimately i got to know ki :
 			---***> Always see ki kya input jaara when kuch aisi cheez mai error aaye jahan input se related kuch kuch ho
 
+	5. After successful login jo JWT hai usko hum LOCALSTORAGE mai (browser ki) store kar lenge and phir 'UseNavigate' Hook se direct Home page pe aa jayenge!!
+
+->Vid 70 (10-03-2024)
+	->We'll be adding the sign in component
+	->Okay so sbse pehle toh maine SignIn pura khud bnaya and uske baad fetching bhi karvadi
+	->bas phir uske baad SIGNIN mai bhi jo api ko body jaa rhi thi usmai elements in Array Form jaa rhe thee toh i changed them to strings
+	->Phir uske baad bas Sab hua JWT bna and local storage mai store hogya
+
+	**(JWT isliye helpful hai like ADD note k liye direct jwt se User id lelo jo Local storage mai hai and uske baad uss id k sth addd krdo note
+	** ALsoo local storage se jwt access kro and direct as a header API Fetch mai Provide krdo
+
+	->Next maine NoteState mai sab k liye auth ko Direclty Local storage se access krke set krdia (LocalStorage.getItem('token')) <-- Aise
+	->uske baad bas aisa kra ki chote chote changes kre in Home.js &&in Notes.js also
 	
