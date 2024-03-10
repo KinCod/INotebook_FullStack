@@ -1,16 +1,25 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 //useLocation hook is provided by router and gives location of page jismai hum haiiiiiiii (exact Path)
 
 const NavBar = () => {
 
+  const user= localStorage.getItem('name');
+
+  const DelToken = () =>{
+    localStorage.clear();
+  }
+
+  //This is used to define if ​‌‍‌⁡⁢⁣⁣𝗟𝗼𝗴𝗶𝗻 𝗦𝗶𝗴𝗻𝗨𝗽 𝗯𝘂𝘁𝘁𝗼𝗻 𝗿𝗵𝗲𝗴𝗮⁡​ ya phir ⁡⁢⁣⁣​‌‍‌‍𝗡𝗮𝗺𝗲 𝗮𝗻𝗱 𝗟𝗼𝗴𝗼𝘂𝘁​⁡
+  const token = localStorage.getItem("token");
+
   //we will use useEffect jo harr baari run hoga jaise hi location will change
-  let location = useLocation();         //return an object and ismai path name element hoga which gives path so using that 
-                                          //we will set active statee
-  useEffect(()=>{
+  let location = useLocation(); //return an object and ismai path name element hoga which gives path so using that
+  //we will set active statee
+  useEffect(() => {
     //console.log(location.pathname)        //using this in the navbar component places
-  },[location])
+  }, [location]);
 
   return (
     <>
@@ -24,30 +33,48 @@ const NavBar = () => {
               src="main.png"
               className="my-0 h-14 hover:scale-125 transition-all duration-300"
               alt="Flowbite Logo"
-            
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               iNoteBook
             </span>
           </a>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <div className="flex space-x-3">
-              <Link
-                type="button"
-                to='/' 
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Login
-              </Link>
-              <Link
-                type="button"
-                to="/signup"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Sign Up
-              </Link>
-            </div>
-            
+            {/*Agar token hoga tab Logout button vrna login */}
+            {!token ? (
+              <div className="flex space-x-3">
+                <Link
+                  type="button"
+                  to="/"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Login
+                </Link>
+                <Link
+                  type="button"
+                  to="/signup"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            ) : (
+                <div className="flex  space-x-3 ">
+                  <div
+                    className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    {user}
+                  </div>
+                  {/*Ispe click hokar signout method runhoga */}
+                  <Link         
+                    type="button" 
+                    to="/signup"
+                    onClick={DelToken}
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Sign out
+                  </Link>
+                </div>
+            )}
 
             <button
               data-collapse-toggle="navbar-sticky"
@@ -82,7 +109,11 @@ const NavBar = () => {
               <li>
                 <Link
                   to="/home"
-                  className={`block py-2 px-3 hover:scale-125  transition-all duration-200 ${location.pathname=== "/home" ? "text-blue-700" : "text-white hover:text-rose-400"}  rounded md:bg-transparent md:p-0 `}
+                  className={`block py-2 px-3 hover:scale-125  transition-all duration-200 ${
+                    location.pathname === "/home"
+                      ? "text-blue-700"
+                      : "text-white hover:text-rose-400"
+                  }  rounded md:bg-transparent md:p-0 `}
                   aria-current="page"
                 >
                   Home
@@ -91,7 +122,11 @@ const NavBar = () => {
               <li>
                 <Link
                   to="/about"
-                  className={`block py-2 px-3 hover:scale-125 transition-all duration-200 ${location.pathname=== "/about" ? "text-blue-700 " : "text-white hover:text-blue-700"} md:p-0 `}
+                  className={`block py-2 px-3 hover:scale-125 transition-all duration-200 ${
+                    location.pathname === "/about"
+                      ? "text-blue-700 "
+                      : "text-white hover:text-blue-700"
+                  } md:p-0 `}
                 >
                   About
                 </Link>
