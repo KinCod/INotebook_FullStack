@@ -1,6 +1,5 @@
 //initially using routes imported from express
-
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const express = require("express");
@@ -37,7 +36,7 @@ const { body, validationResult } = require("express-validator");
 //iss post request ka naam hi LOGIN hai
 router.post(
   "/signin",
-  [body("name").notEmpty(), body("password").isLength({ min: 6 })],
+  [body("name").notEmpty(), body("password").exists()],
   async (req, res) => {
     const result = validationResult(req);
 
@@ -61,7 +60,7 @@ router.post(
         //idhar were using the hasing of bycryptjs
         // 1. added salt
         // 2.Merged salt with the password that was sent from the body of server and then together hashed
-        const salt = await bcrypt.genSaltSync(10);
+        const salt = bcrypt.genSaltSync(10);
         console.log(salt);
         secPass = await bcrypt.hash(req.body.password, salt); //password with added salt and then hashed, returns a promise that used await
 
@@ -99,13 +98,13 @@ router.post(
 router.post(
   "/login",
   [
-    body("password", "Add Password of size atleast 6char").isLength({ min: 6 }),
+    body("password", "Add Password of size atleast 6char").exists(),
     body("email", "Email Does not Exist").isEmail(),
   ], //name not needed as obv user login hi krra (sign up nhi)
   async (req, res) => {
     let success = false;
     const result = validationResult(req);
-    if (!result.isEmpty()) return res.json({success:false, error: result.array() });
+    if (!result.isEmpty()) return res.json({ success, error: result.array() });
 
     const { email, password } = req.body; //data request kra from api (imagined ki joh data page pe user ne input kra to login vohi req kra backend ne from the page)
 
@@ -114,18 +113,20 @@ router.post(
       if (!user)
         return res
           .status(400)
-          .json({success:false, error: "Please enter Correct Credentials" }); //ye toh if galat input daala
+          .json({ success, error: "Please enter Correct Credentials" }); //ye toh if galat input daala
 
       //if user exist krta tab we check ki password sahi ya nhi
-      //so ye bhi pehle hash hoga salt dlega phir db mai cmpare hoga and then btaega if correct or not
+      //sos ye bhi pehle hash hoga salt dlega phir db mai cmpare hoga and then btaega if correct or not
+      const pass = user.password;
+      const wpass = password[0];
+      let passCompare = await bcrypt.compare(wpass, pass);
 
-      const passCompare = bcrypt.compare(password, user.password);
       //comparing jo entered pass tha and jo DB mai password hai
 
       if (!passCompare)
         return res
           .status(400)
-          .json({success:false, error: "Please enter Correct Credentials" });
+          .json({ success: {wpass,pass}, error: "Please enter Correct Credentials" });
 
       //ifpass bhi sahi hogya tab bas token phirse bhej denge
       const data = {
@@ -133,11 +134,11 @@ router.post(
       };
 
       const authtoken = jwt.sign(data, "shhhhh");
-      return res.send({success:true,authtoken:authtoken});
+      return res.send({ success: true, authtoken });
     } catch {
       return res
         .status(400)
-        .json({success:false, error: `Some Internal Error Occured!!!! ${line}` }); //works on time like when database mai data ho hi naa etc etc
+        .json({ success, error: `Some Internal Error Occured` }); //works on time like when database mai data ho hi naa etc etc
     }
   }
 );
@@ -148,7 +149,7 @@ router.post(
 
 router.post("/getuser", fetchUser, async (req, res) => {
   try {
-    userId = req.user.id;
+    const userId = req.user.id;
     const user = await User.findOne(userId).select("-password"); //password k alawa sab select karna
 
     res.send(user);
