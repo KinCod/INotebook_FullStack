@@ -30,6 +30,7 @@ const Notes = () => {
     getAllNotes(); //wil run onnly on opening/refreshing of webPage
   },[]);
 
+  console.log(notes);
   //⁡⁢⁣⁣​‌‍‌𝕌𝕡𝕕𝕒𝕥𝕚𝕟𝕘 𝕥𝕙𝕖 𝕟𝕠𝕥𝕖​⁡
   const updateNote = (note) => {
     //ye for a particular note (uske liye ek ⁡⁢⁣⁣𝗠𝗢𝗗𝗔𝗟 𝗸𝗵𝗼𝗹𝗲𝗴𝗮⁡ and phir uske baad usmai hum update krenge and tab ⁡⁢⁣⁣Edit node⁡ from the context use hoga)
@@ -115,7 +116,7 @@ const Notes = () => {
 
       <h1 className="mt-10 text-5xl font-thin">Your Notes</h1>
       <div className="flex flex-wrap gap-5 items-center justify-center w-full h-auto px-4 py-8 mt-10">
-        {(!note || notes.length == 0) &&  <div>No Notes added by the user</div>}
+        {(!notes || notes.length == 0) &&  <div>No Notes added by the user</div>}
         {notes.length>0 && notes.map((note) => {
           return (
             <NoteItem key={note._id} updateNote={updateNote} notes={note} />
