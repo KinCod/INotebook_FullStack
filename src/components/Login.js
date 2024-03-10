@@ -1,10 +1,13 @@
 "use client";
 
 import { Button, Label, TextInput } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import NoteContext from "../context/notes/noteContext";
+
 
 const Login = () => {
+
   const navigate = useNavigate();
   const host = "http://localhost:5000/";
 
@@ -32,8 +35,9 @@ const Login = () => {
     if (json.success) {
       //Save the auth Token and redirect to  Dashboard page
       localStorage.setItem("token", json.authToken);
+      localStorage.setItem('name', json.name);
       //go to home page
-      navigate("/home");
+      navigate(`/home`);
     } else {
       console.log(json.error);
       window.alert(json.error);

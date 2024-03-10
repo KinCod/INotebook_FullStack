@@ -31,6 +31,7 @@ const SignUp = () => {
       console.log(json.authToken)
       //Save the auth Token and redirect to  Dashboard page
       localStorage.setItem("token", json.authToken);
+      localStorage.setItem('name', json.name);
       //go to home page
       navigate("/home");
     } else {
