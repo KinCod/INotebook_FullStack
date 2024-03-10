@@ -7,7 +7,7 @@ const Login = () => {
   const host = "http://localhost:5000/";
 
   //⁡⁢⁣⁣𝗦𝘁𝗼𝗿𝗶𝗻𝗴 𝘁𝗵𝗲 𝘃𝗮𝗹𝘂𝗲𝘀⁡ from form into a ​‌‍‌⁡⁢⁣⁣𝘀𝘁𝗮𝘁𝗲⁡​
-  const [logi, setLogi] = useState({ email: "", password: "" }); //store Email and pass in this
+  const [logi, setLogi] = useState({ email:"", password:"" }); //store Email and pass in this
   const onChange = (e) => {
     setLogi({ ...logi, [e.target.name]: [e.target.value] });
   };
@@ -22,14 +22,16 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: logi.email, password: logi.password}),
+      body: JSON.stringify({ email: logi.email, password: logi.password }),
     });
 
     const json = await response.json();
-    if(json.success){
-        //redirect to notes page
-    }else{
-        window.prompt(json.error);
+    console.log(json);
+    if (json.success) {
+      //redirect to notes page
+    } else {
+      console.log(json.error);
+      window.alert(json.error);
     }
   };
 
