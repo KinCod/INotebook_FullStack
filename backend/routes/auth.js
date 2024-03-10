@@ -38,11 +38,17 @@ router.post(
   "/signin",
   [body("name").notEmpty(), body("password").exists()],
   async (req, res) => {
+    const success = false;
     const result = validationResult(req);
 
+    // const email = req.body.email;
+    // const name = req.body.name;
+    // const pass = req.body.password;
+    // return res.json({name,email,pass})
+
     if (result.isEmpty()) {
-      //agar api ne jo diya vo validation ko follow krra tab enter kro
-      //store to db
+      // agar api ne jo diya vo validation ko follow krra tab enter kro
+      // store to db
 
       try {
         //finding if particular email is already in database
@@ -53,7 +59,7 @@ router.post(
         if (us) {
           return res
             .status(400)
-            .json({ errors: { msg: "Email already exists." } });
+            .json({success, error: "Email already exists." });
         }
         //agar nhi hai db mai toh store krlo
 
@@ -82,15 +88,15 @@ router.post(
         //ab as token will be provided to the user so s/he dont have to login again and again
 
         //res to api
-        return res.send({ authtoken }); //responding authorisation token id to the server
+        return res.send({success:true, authtoken }); //responding authorisation token id to the server
         //ye upar as an object return kra but aise kyu ni likhe --> {authtoken : authtoken} (in json format)
         //this is because as ES6 use krre so directly the js knows ki agar koi var daala hai toh same name k liye data daalo {name} = {name : "data inside name"}
       } catch (err) {
-        console.log(err);
+        return res.json({success,err});
       }
     }
 
-    return res.send({ errors: result.array() });
+    return res.send({success, errors: result.array() });
   }
 );
 
@@ -126,15 +132,15 @@ router.post(
       if (!passCompare)
         return res
           .status(400)
-          .json({ success: {wpass,pass}, error: "Please enter Correct Credentials" });
+          .json({ success, error: "Please enter Correct Credentials" });
 
       //ifpass bhi sahi hogya tab bas token phirse bhej denge
       const data = {
         user: { id: user._id },
       };
 
-      const authtoken = jwt.sign(data, "shhhhh");
-      return res.send({ success: true, authtoken });
+      const authToken = jwt.sign(data, "shhhhh");
+      return res.send({ success: true, authToken });
     } catch {
       return res
         .status(400)
