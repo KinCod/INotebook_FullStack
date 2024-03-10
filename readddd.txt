@@ -212,3 +212,8 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 	->Next maine NoteState mai sab k liye auth ko Direclty Local storage se access krke set krdia (LocalStorage.getItem('token')) <-- Aise
 	->uske baad bas aisa kra ki chote chote changes kre in Home.js &&in Notes.js also
 	
+********
+	->Next im removing login or signup from navbar and Placing "Logout button and name of user there"
+		->Okay so did that Jab local storage mai token hoga mtlb logged in hai user
+		->Name bhi while login local storage mai store hojayega and direct udhar se hi access hojayega
+		->Thats what i did and also agar local storage mai token nhi hua then directly login ya SignUp page pare redirect hojega pages

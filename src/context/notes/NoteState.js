@@ -49,6 +49,7 @@ const NoteState = (props) => {
     });
     const newNote = await response.json();
 
+    console.log(notes);
     setNotes(notes.concat(newNote));
   };
 
@@ -130,8 +131,10 @@ const NoteState = (props) => {
     setNotes(UpNote);     //because directly change hogya hoga
   };
 
+  //state to save Present Users data
+
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, vis, alert, getAllNotes, editNote }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, vis, alert, getAllNotes, editNote}}>
       {props.children}
     </NoteContext.Provider>
   );
