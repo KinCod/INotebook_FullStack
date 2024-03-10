@@ -2,8 +2,10 @@
 
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const host = "http://localhost:5000/";
 
   //⁡⁢⁣⁣𝗦𝘁𝗼𝗿𝗶𝗻𝗴 𝘁𝗵𝗲 𝘃𝗮𝗹𝘂𝗲𝘀⁡ from form into a ​‌‍‌⁡⁢⁣⁣𝘀𝘁𝗮𝘁𝗲⁡​
@@ -28,7 +30,10 @@ const Login = () => {
     const json = await response.json();
     console.log(json);
     if (json.success) {
-      //redirect to notes page
+      //Save the auth Token and redirect to  Dashboard page
+      localStorage.setItem("token", json.authToken);
+      //go to home page
+      navigate("/home");
     } else {
       console.log(json.error);
       window.alert(json.error);
@@ -36,8 +41,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form className="flex max-w-md flex-col gap-4" onSubmit={handleSubmit}>
+    <div className="flex flex-col justify-center items-center w-full">
+      <form className="flex  mt-32 max-w-2xl w-1/3 flex-col gap-4" onSubmit={handleSubmit}>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email1" value="Your email" />
@@ -65,6 +70,7 @@ const Login = () => {
         </div>
         <Button type="submit">Submit</Button>
       </form>
+      <div className="mt-8">Not yet Registered ? <Link to="/signup" className="transition-all duration-200 text-blue-700 font-bold hover:text-rose-600">Click Here</Link></div>
     </div>
   );
 };

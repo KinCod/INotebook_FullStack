@@ -115,7 +115,8 @@ const Notes = () => {
 
       <h1 className="mt-10 text-5xl font-thin">Your Notes</h1>
       <div className="flex flex-wrap gap-5 items-center justify-center w-full h-auto px-4 py-8 mt-10">
-        {notes.map((note) => {
+        {(!note || notes.length == 0) &&  <div>No Notes added by the user</div>}
+        {notes.length>0 && notes.map((note) => {
           return (
             <NoteItem key={note._id} updateNote={updateNote} notes={note} />
           );

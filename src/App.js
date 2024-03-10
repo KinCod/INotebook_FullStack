@@ -16,11 +16,11 @@ function App() {
         <Router>
           <NavBar />
           <Routes>
-            <Route key={"home"} exact path="/" element={<Home />} />
+            <Route key={"home"} exact path="/home" element={<Home />} />
             
             <Route key={"about"} exact path="/about" element={<About />} />
 
-            <Route key={"login"} exact path="/login" element={<Login />} />
+            <Route key={"login"} exact path="/" element={<Login />} />
 
             <Route key={"signup"} exact path="/signup" element={<SignUp />} />
 

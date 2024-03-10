@@ -34,7 +34,7 @@ const NavBar = () => {
             <div className="flex space-x-3">
               <Link
                 type="button"
-                to='/login' 
+                to='/' 
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Login
@@ -81,8 +81,8 @@ const NavBar = () => {
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[rgb(190,219,227)] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[rgb(190,219,227)] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <Link
-                  to="/"
-                  className={`block py-2 px-3 hover:scale-125  transition-all duration-200 ${location.pathname=== "/" ? "text-blue-700" : "text-white hover:text-rose-400"}  rounded md:bg-transparent md:p-0 `}
+                  to="/home"
+                  className={`block py-2 px-3 hover:scale-125  transition-all duration-200 ${location.pathname=== "/home" ? "text-blue-700" : "text-white hover:text-rose-400"}  rounded md:bg-transparent md:p-0 `}
                   aria-current="page"
                 >
                   Home
