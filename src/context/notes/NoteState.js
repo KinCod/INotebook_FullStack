@@ -14,6 +14,9 @@ const NoteState = (props) => {
     2. SO udhar we'll be using useEffect jo hmesha on tab open run hoga
         -> So basically jab bhi page update hoga we'll getAllnotes and phir inko set krdenge into notes to be printed on page⁡⁡
   */
+  const auth = localStorage.getItem('token');
+  console.log(auth);
+
   const getAllNotes = async () => {
     const url = `${host}api/notes/fetchNotes/`;
 
@@ -21,8 +24,7 @@ const NoteState = (props) => {
       method: "GET", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZGUxYTI2YzgzNWEwNGExNTViZGE4In0sImlhdCI6MTcwNzk5MTQ1OH0.HAKH5TPUlBsP9gDMtwxh2fD136okp_Z9-Q-O0z95uus",
+        "auth-token": `${auth}`
       },
     });
     const json = await response.json();  //response aane mai obv time lgega as we're dealing with async DB
@@ -41,8 +43,7 @@ const NoteState = (props) => {
       method: "POST", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZGUxYTI2YzgzNWEwNGExNTViZGE4In0sImlhdCI6MTcwNzk5MTQ1OH0.HAKH5TPUlBsP9gDMtwxh2fD136okp_Z9-Q-O0z95uus",
+        "auth-token":`${auth}`
       },
       body: JSON.stringify({ title, description, tag }), // body data type (and api ki body ko provide kya krana that it may request)
     });
@@ -64,8 +65,7 @@ const NoteState = (props) => {
       method: "DELETE", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZGUxYTI2YzgzNWEwNGExNTViZGE4In0sImlhdCI6MTcwNzk5MTQ1OH0.HAKH5TPUlBsP9gDMtwxh2fD136okp_Z9-Q-O0z95uus",
+        "auth-token":`${auth}`
       }
     });
 
@@ -108,8 +108,7 @@ const NoteState = (props) => {
       method: "POST", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjZGUxYTI2YzgzNWEwNGExNTViZGE4In0sImlhdCI6MTcwNzk5MTQ1OH0.HAKH5TPUlBsP9gDMtwxh2fD136okp_Z9-Q-O0z95uus",
+        "auth-token":`${auth}`
       },
       body: JSON.stringify({ title, description, tag }), // body data type (and api ki body ko provide kya krana that it may request)
     });
