@@ -9,7 +9,7 @@ const {
   ExpressValidator,
 } = require("express-validator"); //using validator
 
-//importing the notes wala model
+//importing the notes wala modelbackend/routes/notes.js
 const Notes = require("../models/Notes");
 
 //Route to get all the Notes.
@@ -110,7 +110,7 @@ router.delete("/deleteNotes/:id", fetchuser, async (req, res) => {
     //ismai bas id use hoti and usse delete krte hai file ko
     let del = await Notes.findByIdAndDelete(req.params.id);
 
-    res.send({del});
+    res.send({ del });
   } catch (err) {
     console.log({ err });
     return res.status(401).send("Internal Server Error!!! Sorry");
