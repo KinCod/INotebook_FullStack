@@ -16,8 +16,14 @@ const Notes = require("../models/Notes");
 //idhar we'll again use the MIDDLEWARE to get id of user and then use that id to get the notes
 router.get("/fetchNotes", fetchuser, async (req, res) => {
   try {
-    const notes = await Notes.find({ user: req.user.id }); // finding note with paticular id
-    res.json(notes); //converted into json
+    if(req.user.id){ 
+      const notes = await Notes.find({ user: req.user.id }); // finding note with paticular id
+      if(!notes) return res.json([]);
+      else return res.json(notes);  //converted into json
+    }else{
+      return res.status(400).json({msg:"No User Logged In"});
+    }
+     
   } catch (err) {
     return res.status(400).json({ msg: "Error Occured" });
   }
