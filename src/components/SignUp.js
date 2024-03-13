@@ -15,7 +15,7 @@ const SignUp = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     //Fetching the api and Sending Login Data to it
-    const url = `${host}api/auth/signin/`;
+    const url = `https://i-notebook-back.vercel.app/api/auth/signin/`;
 
     const response = await fetch(url, {
       method: "POST", // *GET, POST,
