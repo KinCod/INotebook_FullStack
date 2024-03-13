@@ -1,4 +1,4 @@
-const connectToMongo = require("../db.js");
+const connectToMongo = require("./db.js");
 
 connectToMongo();
 
@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 });
 
 //available routes
-app.use('/api/notes' , require('../routes/notes.js'));   //idhar /api/notes se hum is json ko access kar skte
-app.use('/api/auth' ,require('../routes/auth.js'))  //inko endpoint bolte (eg. ye hai ep for ./routes/auth.js)
+app.use('/api/notes' , require('./routes/notes.js'));   //idhar /api/notes se hum is json ko access kar skte
+app.use('/api/auth' ,require('./routes/auth.js'))  //inko endpoint bolte (eg. ye hai ep for ./routes/auth.js)
 
 app.listen(port, () => {
   console.log(`iNotebook Backend listening on port ** http://localhost:${port}/ **`);
