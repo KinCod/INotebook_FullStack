@@ -1,7 +1,7 @@
 .App {
   text-align: left;
   width: 100vw;
-  
+  min-width: 540px;
 }
 
 *{

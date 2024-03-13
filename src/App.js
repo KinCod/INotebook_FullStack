@@ -8,6 +8,7 @@ import About from "./components/About";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Aalert from "./components/Aalert";
+import Addnote from "./components/Addnote";
 
 function App() {
   const [alert, setAlert] = useState({});
@@ -21,7 +22,7 @@ function App() {
   return (
     <>
       <Router>
-        <NavBar showAlert={showAlert}/>
+        <NavBar showAlert={showAlert} />
         <Aalert alert={alert} />
         <Routes>
           <Route
@@ -34,13 +35,25 @@ function App() {
           <Route key={"about"} exact path="/about" element={<About />} />
 
           <Route
+            key={"add"}
+            exact
+            path="/add"
+            element={<Addnote showAlert={showAlert} />}
+          />
+
+          <Route
             key={"login"}
             exact
             path="/login"
             element={<Login showAlert={showAlert} />}
           />
 
-          <Route key={"signup"} exact path="/signup" element={<SignUp showAlert={showAlert}/>} />
+          <Route
+            key={"signup"}
+            exact
+            path="/signup"
+            element={<SignUp showAlert={showAlert} />}
+          />
         </Routes>
       </Router>
     </>
