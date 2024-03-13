@@ -12,7 +12,7 @@ app.use(cors())
 app.use(express.json())       //this acts as middleware bw the api and our application
 
 app.get("/", (req, res) => {
-  res.send("Hello Sir!");
+  res.status(200).json({message:"Hello Doston!"});
 });
 
 //available routes
