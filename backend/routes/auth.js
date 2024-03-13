@@ -84,11 +84,11 @@ router.post(
             id: us.id, //this id is the id for the user created in the data base
           },
         };
-        const authtoken = jwt.sign(data, "shhhhh"); //webtoken from data and secret m(returns a promise)
+        const authToken = jwt.sign(data, "shhhhh"); //webtoken from data and secret m(returns a promise)
         //ab as token will be provided to the user so s/he dont have to login again and again
 
         //res to api
-        return res.send({success:true, authtoken, name:req.body.name }); //responding authorisation token id to the server
+        return res.send({success:true, authToken, name:req.body.name }); //responding authorisation token id to the server
         //ye upar as an object return kra but aise kyu ni likhe --> {authtoken : authtoken} (in json format)
         //this is because as ES6 use krre so directly the js knows ki agar koi var daala hai toh same name k liye data daalo {name} = {name : "data inside name"}
       } catch (err) {
