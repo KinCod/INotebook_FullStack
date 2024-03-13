@@ -243,3 +243,29 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 And atlast humne ye pura project khatam kar dia 
 Now we'll host it and add it to resume
 
+
+->HOSTING
+	Front and back alag alag se host hota hai
+	--> ** https://youtu.be/DDt7Qdk0Ejw ** This is the video im following 
+		1. Obv front end mai fetch k time we provide host right.
+			->too pehle backend ko host krdo and phir uske baad backend wale link to daalo as host into the front end FETCHapis
+		2. Toh what ive decided is to make use of an ENVIRONMENT VARIABLE to save the host link and phir uske aage api address lga dunga 
+			->address jaise maine set krein hai "/api/notes se pehle backend wala link"
+			->I think itne mai ho jayegaaaaa
+
+		**ENV
+			1.  npm i --save-dev dotenv
+			**React mai inside env hmesha we have to use REACT_ENV at the start!!
+			2. ek baari likh dia then accesss or log them using "process.env.nameOfVar"
+
+		**backend
+			1. ismai ek api folder bnao and usmai vo file store kro jidhar saari routes defined hai ,ie, index.js (and even env agar exist krti)
+			2. bas phir video dekho and host kro (video mai ek vercel.json bhi bnvaya)
+
+			->in app.use(cors) kuch add kra hai from video -> (good video take idea) --> https://www.youtube.com/watch?v=Cfi0mymfKiA
+
+			//deployed at link -> https://i-notebook-full-stack.vercel.app/
+	
+		**FRONT END
+			1. ab ismai mai front end k env folder mai host ye link set krunga and bas uske aage sub links for fetch api lgte rhenge
+
