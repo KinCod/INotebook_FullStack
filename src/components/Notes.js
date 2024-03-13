@@ -53,7 +53,6 @@ const Notes = (props) => {
   
   return (
     <>
-      <Addnote showAlert = {props.showAlert}/>
 
       <Button className="hidden" ref={ref} onClick={() => setOpenModal(true)}>
         Toggle modal
@@ -123,7 +122,7 @@ const Notes = (props) => {
         </Modal.Footer>
       </Modal>
 
-      <h1 className="mt-10 text-5xl font-thin">Your Notes</h1>
+      <h1 className="mt-16 text-blue-800 text-7xl font-thin">Your Notes</h1>
       <div className="flex flex-wrap gap-5 items-center justify-center w-full h-auto px-4 py-8 mt-10">
         {(notes.length === 0 || !notes) ?
            <div>No Notes added by the user</div>

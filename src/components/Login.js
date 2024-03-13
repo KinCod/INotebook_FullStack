@@ -30,11 +30,12 @@ const Login = (props) => {
 
     const json = await response.json();
     console.log(json);
+
     if (json.success) {
       //Save the auth Token and redirect to  Dashboard page
-      localStorage.setItem("token", json.authToken);
+      localStorage.setItem("token",json.authToken);
       localStorage.setItem('name', json.name); 
-      props.showAlert(json.name + " Logged in Successfully!!","success");
+      props.showAlert((json.name).toUpperCase() + " Logged in Successfully!!","success");
 
       //go to home page
       navigate(`/`);
@@ -47,7 +48,7 @@ const Login = (props) => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
-      <h1 className="text-blue-900 font-bold text-5xl mt-10">Login</h1>
+      <h1 className="text-blue-900 font-bold text-5xl mt-16">Login</h1>
       <form className="flex mt-12 max-w-2xl w-1/3 flex-col gap-4" onSubmit={handleSubmit}>
         <div>
           <div className="mb-2 block">
@@ -57,9 +58,10 @@ const Login = (props) => {
             id="email1"
             name="email"
             type="email"
-            placeholder="name@flowbite.com"
+            placeholder="name@abcd.com"
             required
             onChange={onChange}
+            className="hover:scale-105 transition-all duration-[250ms]"
           />
         </div>
         <div>
@@ -71,7 +73,9 @@ const Login = (props) => {
             name="password"
             onChange={onChange}
             type="password"
+            placeholder="*********"
             required
+            className="hover:scale-105 transition-all duration-[250ms]"
           />
         </div>
         <Button type="submit">Submit</Button>

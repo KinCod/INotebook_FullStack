@@ -28,8 +28,8 @@ const NavBar = (props) => {
     <>
       <nav className="bg-[rgb(190,219,227)]  w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-          <a
-            href="https://flowbite.com/"
+          <Link
+            to="/add"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
@@ -40,7 +40,7 @@ const NavBar = (props) => {
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               iNoteBook
             </span>
-          </a>
+          </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             {/*Agar token hoga tab Logout button vrna login */}
             {!token ? (
@@ -122,6 +122,19 @@ const NavBar = (props) => {
                   Home
                 </Link>
               </li>
+              
+              <li>
+                <Link
+                  to="/add"
+                  className={`block py-2 px-3 hover:scale-125 transition-all duration-200 ${
+                    location.pathname === "/add"
+                      ? "text-blue-700 "
+                      : "text-white hover:text-blue-700"
+                  } md:p-0 `}
+                >
+                  Add Note
+                </Link>
+              </li>
               <li>
                 <Link
                   to="/about"
@@ -133,14 +146,6 @@ const NavBar = (props) => {
                 >
                   About
                 </Link>
-              </li>
-              <li>
-                <a
-                  href="#/"
-                  className="block py-2 px-3 hover:scale-125 transition-all duration-200 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Services
-                </a>
               </li>
               <li>
                 <a

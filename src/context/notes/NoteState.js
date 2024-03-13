@@ -1,8 +1,10 @@
 import { useState } from "react";
 import NoteContext from "./noteContext"; //contezxt vali file mai bas context ko janam dia
+import { useNavigate } from "react-router-dom";
 //udhar bhi states ko populate kar skte thee but clean rkhna code
 
 const NoteState = (props) => {
+
   const host = "http://localhost:5000/";
 
   const [notes, setNotes] = useState([]); //this is used to access and update notes
@@ -28,9 +30,16 @@ const NoteState = (props) => {
     const json = await response.json(); //response aane mai obv time lgega as we're dealing with async DB
     
     console.log(json);
+    if(json.error) {
+      window.alert("Internal Error. Please SignUp Again!!")
+      localStorage.removeItem('token');
+      localStorage.removeItem('name');
+    }else{
+      setNotes(json);
+    }
 
     //ismai saare notes set hojaenge and will be provisded to notes.js and ultimately show hoenge in screen
-    setNotes(json);
+    
   };
 
   //⁡⁢⁣⁣​‌‌‍𝕒𝕕𝕕𝕚𝕟𝕘 𝕒 𝕟𝕠𝕕𝕖 𝔽𝕦𝕟𝕔⁡​⁡
