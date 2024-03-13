@@ -217,3 +217,29 @@ Woohoooo so aaj maine khud Note delete krne wala code likha and the best part is
 		->Okay so did that Jab local storage mai token hoga mtlb logged in hai user
 		->Name bhi while login local storage mai store hojayega and direct udhar se hi access hojayega
 		->Thats what i did and also agar local storage mai token nhi hua then directly login ya SignUp page pare redirect hojega pages
+
+->13-03-2024
+	->Some important things:
+		1. In the Notes.js while printing the notes for a particular id set an If condition k if notes exist krte toh print them vrna koi text print kro
+		2. Jaise hi logOut hore vaise hi joh mai context mai State hai to store the notes for the id usko empty krdo!!!
+
+	->Now Were working on Alert
+		->So maine flowbite ka hi Alert lia hai and DIrect app.js se hi run hoga vo
+		->Phir bas app.js mai method bnaya jo alert ko message and type bhejega as prop
+		->ye mehtod sab needed components ko as prop transfer kra
+
+-> Vid 72 (13-03-2024)
+	-> In this vo sikhayega ki how to access user specific Notes (ive done the pehle hi but lets see)
+	-> Easy tha and i Even Got to know ki maine kya glti kri thi jiski vajah se as soon as i logged in with next account error kyu aa rha tha
+
+		*** ERROR FINDING and SOLVING ***
+
+	    ***->So basically Note State sbse pehle run hota and in that maine Token ek var mai store krna tha but Logged in ni abhi so var empty
+		->toh maine login kra and we navigate like this login->home->notes->getNotes->and ye get notes is in note state but as
+				->note state mai still khaali wala auth hai kyunki note state pura run ni hoga sirf GetNotes mthod run hoga
+				->isliye we were calling the method and doing fetching without the Token in the header and uski vajah 
+				->se error aa rha thaaaa
+
+And atlast humne ye pura project khatam kar dia 
+Now we'll host it and add it to resume
+
