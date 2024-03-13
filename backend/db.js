@@ -1,7 +1,8 @@
 //database se connect hone wala code
-require('dotenv').config();            //used to acces the envs
 
 const mongoose = require("mongoose");
+
+require('dotenv').config();            //used to acces the envs
 const mongoURI = process.env.MONGO_URL;
 
 const connectToMongo = () => {
