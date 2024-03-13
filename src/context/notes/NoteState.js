@@ -5,8 +5,7 @@ import NoteContext from "./noteContext"; //contezxt vali file mai bas context ko
 const NoteState = (props) => {
   const host = "http://localhost:5000/";
 
-  const notesInitial = []; //will be filled with db k nodes b fetch api
-  const [notes, setNotes] = useState(notesInitial); //this is used to access and update notes
+  const [notes, setNotes] = useState([]); //this is used to access and update notes
 
   //⁡⁢⁣⁣​‌‌‍𝕪𝕖 𝕓𝕒𝕤𝕚𝕔𝕒𝕝𝕝𝕪 𝕤𝕒𝕒𝕣𝕖 𝕟𝕠𝕥𝕖𝕤 𝕜𝕠 𝕗𝕖𝕥𝕔𝕙 𝕜𝕣𝕝𝕖𝕘𝕒 𝕥𝕙𝕣𝕠𝕦𝕘𝕙 𝔻𝕓⁡⁡​
   /* 
@@ -14,8 +13,7 @@ const NoteState = (props) => {
     2. SO udhar we'll be using useEffect jo hmesha on tab open run hoga
         -> So basically jab bhi page update hoga we'll getAllnotes and phir inko set krdenge into notes to be printed on page⁡⁡
   */
-  const auth = localStorage.getItem('token');
-  console.log(auth);
+  // console.log(auth);
 
   const getAllNotes = async () => {
     const url = `${host}api/notes/fetchNotes/`;
@@ -24,17 +22,19 @@ const NoteState = (props) => {
       method: "GET", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token": `${auth}`
+        "auth-token": localStorage.getItem("token"),
       },
     });
-    const json = await response.json();  //response aane mai obv time lgega as we're dealing with async DB
+    const json = await response.json(); //response aane mai obv time lgega as we're dealing with async DB
+    
+    console.log(json);
 
     //ismai saare notes set hojaenge and will be provisded to notes.js and ultimately show hoenge in screen
     setNotes(json);
   };
 
   //⁡⁢⁣⁣​‌‌‍𝕒𝕕𝕕𝕚𝕟𝕘 𝕒 𝕟𝕠𝕕𝕖 𝔽𝕦𝕟𝕔⁡​⁡
-  
+
   const addNote = async (title, description, tag) => {
     //Api call
     const url = `${host}api/notes/addNotes/`;
@@ -43,7 +43,7 @@ const NoteState = (props) => {
       method: "POST", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":`${auth}`
+        "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }), // body data type (and api ki body ko provide kya krana that it may request)
     });
@@ -53,9 +53,9 @@ const NoteState = (props) => {
     setNotes(notes.concat(newNote));
   };
 
-  //⁡⁢⁢⁢​‌‌‍⁡⁢⁣⁣𝕕𝕖𝕝𝕖𝕥𝕚𝕟𝕘​•⁡ 
-  
-  const deleteNote = async(id) => {
+  //⁡⁢⁢⁢​‌‌‍⁡⁢⁣⁣𝕕𝕖𝕝𝕖𝕥𝕚𝕟𝕘​•⁡
+
+  const deleteNote = async (id) => {
     //isko note ki id aaega
     //~FETCH API
     const url = `${host}api/notes/deleteNotes/${id}`;
@@ -66,8 +66,8 @@ const NoteState = (props) => {
       method: "DELETE", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":`${auth}`
-      }
+        "auth-token": localStorage.getItem("token"),
+      },
     });
 
     console.log(await response.json());
@@ -76,30 +76,13 @@ const NoteState = (props) => {
     const newNotes = notes.filter((note) => {
       return id !== note._id;
     });
-    
+
     //phir bas isko setNotes krdo and ultimately final notes mai ye exist ni krega
     setNotes(newNotes);
   };
 
-  //⁡⁢⁣⁣​‌‌‍𝕒𝕝𝕖𝕣𝕥​⁡ ⁡⁡​
-  
-  //ye alert will be called when note delete hoga
-  //and vis will be given to home.js and obv vis== true hua tab alert show hojaega
-  //we can even set note Title in this alert but abhi zroori ni so we'll see
-  const [vis, setVis] = useState({});
-  const alert = (id) => {
-    const send = notes.filter((note) => {
-      return note._id === id;
-    });
-    setVis({ vis: true, alert: send[0].title });
-
-    setTimeout(() => {
-      setVis({ vis: false });
-    }, 5000);
-  };
-
   //⁡⁢⁣⁣​‌‌‍‍𝕦𝕡𝕕𝕒𝕥𝕚𝕟𝕘​⁡
-  
+
   const editNote = async (id, title, description, tag) => {
     const url = `${host}api/notes/update/${id}`; //ye hai api ki url that will be provided with a parameter ,ie, the id;
 
@@ -109,32 +92,33 @@ const NoteState = (props) => {
       method: "POST", // *GET, POST,
       headers: {
         "Content-Type": "application/json",
-        "auth-token":`${auth}`
+        "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }), // body data type (and api ki body ko provide kya krana that it may request)
     });
 
-    console.log(await response.json())
+    console.log(await response.json());
 
     //for the changes to ⁡⁢⁣⁣𝗿𝗲𝗳𝗹𝗲𝗰𝘁 𝗶𝗻 𝗳𝗿𝗼𝗻𝘁𝗘𝗻𝗱⁡
-    const UpNote = JSON.parse(JSON.stringify(notes))
+    const UpNote = JSON.parse(JSON.stringify(notes));
 
     for (let index = 0; index < UpNote.length; index++) {
-
-      if ( UpNote[index]._id === id) {
+      if (UpNote[index]._id === id) {
         UpNote[index].title = title;
         UpNote[index].description = description;
         UpNote[index].tag = tag;
       }
     }
 
-    setNotes(UpNote);     //because directly change hogya hoga
+    setNotes(UpNote); //because directly change hogya hoga
   };
 
   //state to save Present Users data
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, vis, alert, getAllNotes, editNote}}>
+    <NoteContext.Provider
+      value={{ notes, setNotes, addNote, deleteNote, getAllNotes, editNote }}
+    >
       {props.children}
     </NoteContext.Provider>
   );
