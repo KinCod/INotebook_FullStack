@@ -7,11 +7,11 @@ function NoteItem(props) {
 
   const context = useContext(NoteContext);
 
-  const { deleteNote, alert } = context;
+  const { deleteNote} = context;
 
   const del = () => {
     deleteNote(notes._id);
-    alert(notes._id); //ab setting alert -> context mai func hoga jo alert ko activate krega
+    props.showAlert("Deleted Note with Title : "+ notes.title,"warning") //ab setting alert -> context mai func hoga jo alert ko activate krega
   };
 
   //props k through particular note ki details iss page par aari when map fucntion runs in the NOTES.js

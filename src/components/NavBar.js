@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, {  useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //useLocation hook is provided by router and gives location of page jismai hum haiiiiiiii (exact Path)
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const navigate = useNavigate();
 
   const user= localStorage.getItem('name');
 
   const DelToken = () =>{
+    props.showAlert(user + " Logged Out Successfully!!","lime");
     localStorage.clear();
+    navigate('/login');
   }
 
   //This is used to define if ​‌‍‌⁡⁢⁣⁣𝗟𝗼𝗴𝗶𝗻 𝗦𝗶𝗴𝗻𝗨𝗽 𝗯𝘂𝘁𝘁𝗼𝗻 𝗿𝗵𝗲𝗴𝗮⁡​ ya phir ⁡⁢⁣⁣​‌‍‌‍𝗡𝗮𝗺𝗲 𝗮𝗻𝗱 𝗟𝗼𝗴𝗼𝘂𝘁​⁡
@@ -44,7 +47,7 @@ const NavBar = () => {
               <div className="flex space-x-3">
                 <Link
                   type="button"
-                  to="/"
+                  to="/login"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Login
@@ -108,11 +111,11 @@ const NavBar = () => {
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[rgb(190,219,227)] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[rgb(190,219,227)] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <Link
-                  to="/home"
+                  to="/"
                   className={`block py-2 px-3 hover:scale-125  transition-all duration-200 ${
-                    location.pathname === "/home"
+                    location.pathname === "/"
                       ? "text-blue-700"
-                      : "text-white hover:text-rose-400"
+                      : "text-white hover:text-blue-700"
                   }  rounded md:bg-transparent md:p-0 `}
                   aria-current="page"
                 >

@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import { useContext } from "react";
 import NoteContext from "../context/notes/noteContext";
 
-const Addnote = () => {
+const Addnote = (props) => {
   const context = useContext(NoteContext);
   const { addNote } = context; //ye func tab call krenge jab form mai saari entry ho Gyi ho
 
@@ -11,6 +11,7 @@ const Addnote = () => {
     e.preventDefault();        //jo bhi event hai uski default working stop krega(reload ni hoga page on submission)
     
     addNote(note.title, note.description,note.tag);
+    props.showAlert("Added Note with title : "+note.title,"success");
     setNote({title:"",description : "",tag: ""});
   };
 

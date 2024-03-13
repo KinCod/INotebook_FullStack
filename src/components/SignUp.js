@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { Button, Label, TextInput } from 'flowbite-react';
 import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const navigate = useNavigate();
   const host = "http://localhost:5000/";
 
@@ -32,17 +32,20 @@ const SignUp = () => {
       //Save the auth Token and redirect to  Dashboard page
       localStorage.setItem("token", json.authToken);
       localStorage.setItem('name', json.name);
+      props.showAlert(json.name + " SignUp was Successful!!","success");
       //go to home page
-      navigate("/home");
+      navigate("/");
     } else {
+      props.showAlert(json.error,"failure");
       console.log(json.error);
-      window.alert(json.error);
+      //window.alert(json.error);
     }
   }
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
-      <form onSubmit={handleSubmit} className="flex  mt-32 max-w-2xl w-1/3 flex-col gap-4">
+      <h1 className="text-blue-900 font-bold text-5xl mt-10">SignUp</h1>
+      <form onSubmit={handleSubmit} className="flex  mt-10 max-w-2xl w-1/3 flex-col gap-4">
       <div>
           <div className="mb-2 block">
             <Label htmlFor="name1" value="Your Name" />

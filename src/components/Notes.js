@@ -6,17 +6,33 @@ import { useContext, useEffect, useRef } from "react";
 import NoteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import Addnote from "./Addnote";
+import { useNavigate } from "react-router-dom";
 
-const Notes = () => {
+const Notes = (props) => {
+  
   const [openModal, setOpenModal] = useState(false);
 
   const context = useContext(NoteContext);
   const { notes, getAllNotes ,editNote} = context; //DESTRUCTURING se maine directly context se notes and setNotes ko access kar lia and ab directly use kar skta
 
+  //Just the useEffect to ⁡⁢⁣⁢​‌‍‌𝗙𝗲𝘁𝗰𝗵​⁡ noted on ⁡⁢⁣⁢​‌‌‍𝗿𝗲𝗳𝗿𝗲𝘀𝗵​⁡
+  const navigate = useNavigate();
+  useEffect(() => {
+   
+    //​‌‍‌⁡⁢⁣⁣𝗔⁡⁢⁣⁢𝗴𝗮𝗿 𝗧𝗼𝗸𝗲𝗻 𝗵𝗮𝗶​ ⁡Tab hi Home mai enter kro Vrna ⁡⁢⁣⁣​‌‍‌𝗣𝗲𝗵𝗹𝗲 𝗹𝗼𝗴𝗶𝗻 𝘆𝗮 𝗦𝗶𝗴𝗻𝘂𝗽​⁡ kro
+    if(localStorage.getItem('token')){
+      getAllNotes(); //wil run onnly on opening/refreshing of webPage
+    }else navigate('/login');
+
+    //eslint-disable-next-line
+  },[]);
+
+
   //⁡⁢⁣⁣​‌‌‍𝕋𝕙𝕚𝕤 𝕚𝕤 𝕥𝕠𝕥𝕒𝕝𝕝𝕪 c𝕠𝕟𝕟𝕖𝕔𝕥𝕖𝕕 𝕥𝕠 𝕄𝕆𝕕𝔸𝕃​⁡
   const [note, setNote] = useState({title:"",description : "",tag: ""})
   const handleSubmit = () => {     
     editNote(note._id,note.title, note.description,note.tag);
+    props.showAlert("Edited Note Successfully","success");
   };
   
   const onChange = (e) =>{          //idhar we took the event
@@ -24,13 +40,6 @@ const Notes = () => {
     setNote({...note,[e.target.name]: e.target.value })  
   }
 
-  //Just the useEffect to ⁡⁢⁣⁢​‌‍‌𝗙𝗲𝘁𝗰𝗵​⁡ noted on ⁡⁢⁣⁢​‌‌‍𝗿𝗲𝗳𝗿𝗲𝘀𝗵​⁡
-  useEffect(() => {
-    // eslint-disable-next-line
-    getAllNotes(); //wil run onnly on opening/refreshing of webPage
-  },[]);
-
-  console.log(notes);
   //⁡⁢⁣⁣​‌‍‌𝕌𝕡𝕕𝕒𝕥𝕚𝕟𝕘 𝕥𝕙𝕖 𝕟𝕠𝕥𝕖​⁡
   const updateNote = (note) => {
     //ye for a particular note (uske liye ek ⁡⁢⁣⁣𝗠𝗢𝗗𝗔𝗟 𝗸𝗵𝗼𝗹𝗲𝗴𝗮⁡ and phir uske baad usmai hum update krenge and tab ⁡⁢⁣⁣Edit node⁡ from the context use hoga)
@@ -44,7 +53,7 @@ const Notes = () => {
   
   return (
     <>
-      <Addnote />
+      <Addnote showAlert = {props.showAlert}/>
 
       <Button className="hidden" ref={ref} onClick={() => setOpenModal(true)}>
         Toggle modal
@@ -116,12 +125,15 @@ const Notes = () => {
 
       <h1 className="mt-10 text-5xl font-thin">Your Notes</h1>
       <div className="flex flex-wrap gap-5 items-center justify-center w-full h-auto px-4 py-8 mt-10">
-        {(!notes || notes.length == 0) &&  <div>No Notes added by the user</div>}
-        {notes.length>0 && notes.map((note) => {
-          return (
-            <NoteItem key={note._id} updateNote={updateNote} notes={note} />
-          );
-        })}
+        {(notes.length === 0 || !notes) ?
+           <div>No Notes added by the user</div>
+          :
+            notes.map((note) => {
+            return (
+              <NoteItem key={note._id} updateNote={updateNote} notes={note} showAlert={props.showAlert} />
+            );
+          })
+        }
       </div>
     </>
   );
