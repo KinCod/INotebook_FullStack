@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = (props) => {
   const navigate = useNavigate();
-  const host = "http://localhost:5000/";
+  const host = process.env.REACT_APP_HOST;
 
   //⁡⁢⁣⁣𝗦𝘁𝗼𝗿𝗶𝗻𝗴 𝘁𝗵𝗲 𝘃𝗮𝗹𝘂𝗲𝘀⁡ from form into a ​‌‍‌⁡⁢⁣⁣𝘀𝘁𝗮𝘁𝗲⁡​
   const [logi, setLogi] = useState({ name: "", email: "", password: "" }); //store Email and pass in this

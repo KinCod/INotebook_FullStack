@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const NoteState = (props) => {
 
-  const host = "http://localhost:5000/";
+  const host = process.env.REACT_APP_HOST;
 
   const [notes, setNotes] = useState([]); //this is used to access and update notes
 
