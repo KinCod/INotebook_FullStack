@@ -9,7 +9,7 @@ const port = 5000;
 var cors = require('cors')
 app.use(cors(
   {
-    origin :["https://deplpy-mern-1whq.vercel.app"],
+    origin :["https://deploy-mern-1whq.vercel.app"],
     methods:['POST',"GET","DELETE"],
     credentials : true
   }
