@@ -1,8 +1,19 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import { useContext } from "react";
 import NoteContext from "../context/notes/noteContext";
+import { useNavigate } from "react-router-dom";
 
 const Addnote = (props) => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+   
+    //​‌‍‌⁡⁢⁣⁣𝗔⁡⁢⁣⁢𝗴𝗮𝗿 𝗧𝗼𝗸𝗲𝗻 𝗵𝗮𝗶​ ⁡Tab hi Home mai enter kro Vrna ⁡⁢⁣⁣​‌‍‌𝗣𝗲𝗵𝗹𝗲 𝗹𝗼𝗴𝗶𝗻 𝘆𝗮 𝗦𝗶𝗴𝗻𝘂𝗽​⁡ kro
+    if(! localStorage.getItem('token')) navigate('/login');
+
+    //eslint-disable-next-line
+  },[]);
+
   const context = useContext(NoteContext);
   const { addNote } = context; //ye func tab call krenge jab form mai saari entry ho Gyi ho
 
@@ -27,8 +38,8 @@ const Addnote = (props) => {
   }
 
   return (
-    <div className="w-full">
-      <h1 className="text-6xl font-thin">Add a Note</h1>
+    <div className="w-full text-center">
+      <h1 className="mt-16 mb-10 text-7xl font-thin text-blue-800">Add a Note</h1>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto my-5">
         <div className="text-left mb-5">
