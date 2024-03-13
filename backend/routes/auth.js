@@ -2,6 +2,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+require('dotenv').config(); 
+
 const express = require("express");
 //input the User.js schema from the models of mongoose to use it here
 const User = require("../models/User");
@@ -84,7 +86,7 @@ router.post(
             id: us.id, //this id is the id for the user created in the data base
           },
         };
-        const authToken = jwt.sign(data, "shhhhh"); //webtoken from data and secret m(returns a promise)
+        const authToken = jwt.sign(data, process.env.TOKEN); //webtoken from data and secret m(returns a promise)
         //ab as token will be provided to the user so s/he dont have to login again and again
 
         //res to api

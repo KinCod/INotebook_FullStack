@@ -1,7 +1,8 @@
 //database se connect hone wala code
+require('dotenv').config();            //used to acces the envs
 
 const mongoose = require("mongoose");
-const mongoURI = "mongodb+srv://kinshuksharely12:lLAP1RUwnQKBfIJb@cluster0.ae8zc3k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; //127 because node js is 18. something version
+const mongoURI = process.env.MONGO_URL;
 
 const connectToMongo = () => {
   mongoose
