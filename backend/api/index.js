@@ -8,11 +8,6 @@ const port = 5000;
 
 var cors = require('cors')
 app.use(cors(
-  {
-    origin :["https://deploy-mern-1whq.vercel.app"],
-    methods:['POST',"GET","DELETE"],
-    credentials : true
-  }
 ))
 
 app.use(express.json())       //this acts as middleware bw the api and our application
